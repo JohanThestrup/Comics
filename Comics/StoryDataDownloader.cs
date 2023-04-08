@@ -1,5 +1,4 @@
 ﻿using Comics.Marvel;
-using Comics.Marvel.Interfaces;
 using Comics.Marvel.Models;
 
 namespace Comics;
@@ -63,3 +62,10 @@ public class StoryDataDownloader : IStoryDataDownloader
 }
 public record StoryData(string StoryTitle, string[] TextFileContent, CharacterSummary[] Characters);
 public record CharacterData(string CharacterName, string Path, string Extension);
+public interface IStoryDataDownloader
+{
+	Task Start();
+	Task<StoryData> GetStoryData();
+	Task<CharacterData> GetCharacterData(string resourceURI);
+	Task<HttpResponseMessage> GetCharacterThumbnail(string thumbnailURL);
+}

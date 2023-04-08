@@ -39,3 +39,9 @@ public class FileHandler : IFileHandler
 		await res.Content.CopyToAsync(fs);
 	}
 }
+public interface IFileHandler
+{
+	string CreateDirectory(string storyTitle);
+	void SaveTxtFile(string fileName, string[] textContent);
+	Task SaveImage(HttpResponseMessage res, string path);
+}

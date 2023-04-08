@@ -1,10 +1,6 @@
-using AutoFixture;
 using AutoFixture.Xunit2;
-using Comics;
 using Comics.Marvel;
-using Comics.Marvel.Interfaces;
 using Comics.Marvel.Models;
-using FluentAssertions;
 using NSubstitute;
 
 namespace Comics.Tests;

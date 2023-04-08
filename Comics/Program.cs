@@ -1,6 +1,5 @@
 ﻿using Comics;
 using Comics.Marvel;
-using Comics.Marvel.Interfaces;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 

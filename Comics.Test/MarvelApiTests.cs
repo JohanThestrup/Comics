@@ -1,5 +1,4 @@
 ﻿using Comics.Marvel;
-using FluentAssertions;
 using Microsoft.Extensions.Options;
 using NSubstitute;
 
@@ -20,6 +19,7 @@ public class MarvelApiTests
 			PublicKey = "thePublicKey",
 			ImageVariant = "theImageVariant"
 		});
+		// SUT
 		_marvelApi = new MarvelApi(_httpClient, _configuration);
 	}
 	[Theory]

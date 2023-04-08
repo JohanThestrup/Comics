@@ -1,5 +1,4 @@
-﻿using Comics.Marvel.Interfaces;
-using Comics.Marvel.Models;
+﻿using Comics.Marvel.Models;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System.Security.Cryptography;
@@ -72,4 +71,12 @@ public class MarvelApi : IMarvelApi
 	{
 		return $"{path}/{ _configuration.ImageVariant}.{extension}";
 	}
+}
+public interface IMarvelApi
+{
+	Task<StoryDataWrapper> GetStory();
+	Task<CharacterDataWrapper> GetCharacter(string characterURI);
+	Task<HttpResponseMessage> GetImage(string thumbnailURL);
+	string CreateHash(long ts);
+	string BuildThumbnailURL(string path, string extension);
 }
