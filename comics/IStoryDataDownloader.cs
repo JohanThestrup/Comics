@@ -1,4 +1,4 @@
-﻿namespace comics;
+﻿namespace Comics;
 public interface IStoryDataDownloader
 {
 	Task Start();

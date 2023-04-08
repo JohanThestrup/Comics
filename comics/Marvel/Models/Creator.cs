@@ -1,4 +1,4 @@
-﻿namespace comics.Marvel.Models;
+﻿namespace Comics.Marvel.Models;
 public record CreatorList
 (
 	int Available,

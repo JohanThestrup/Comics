@@ -1,4 +1,4 @@
-﻿namespace comics.Marvel;
+﻿namespace Comics.Marvel;
 
 public class MarvelConfig
 {

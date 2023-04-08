@@ -1,9 +1,9 @@
 using AutoFixture;
 using AutoFixture.Xunit2;
-using comics;
-using comics.Marvel;
-using comics.Marvel.Interfaces;
-using comics.Marvel.Models;
+using Comics;
+using Comics.Marvel;
+using Comics.Marvel.Interfaces;
+using Comics.Marvel.Models;
 using FluentAssertions;
 using NSubstitute;
 

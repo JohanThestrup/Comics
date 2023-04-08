@@ -1,4 +1,4 @@
-﻿namespace comics.Marvel.Models;
+﻿namespace Comics.Marvel.Models;
 public record SeriesList
 (
 	int Available,
@@ -6,4 +6,3 @@ public record SeriesList
 	string CollectionURI,
 	ComicSummary[] Items
 );
-

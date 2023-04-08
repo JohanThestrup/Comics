@@ -1,4 +1,4 @@
-﻿namespace comics.Marvel.Models;
+﻿namespace Comics.Marvel.Models;
 public record StoryDataWrapper
 (
 	int Code,
@@ -44,4 +44,7 @@ public record Story
 	CharacterList Characters,
 	CreatorList Creators,
 	ComicSummary OriginalIssue
-);
+)
+{
+	public string Description { get; set; } = Description;
+}

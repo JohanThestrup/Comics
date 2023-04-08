@@ -1,8 +1,8 @@
-﻿using comics.Marvel;
-using comics.Marvel.Interfaces;
-using comics.Marvel.Models;
+﻿using Comics.Marvel;
+using Comics.Marvel.Interfaces;
+using Comics.Marvel.Models;
 
-namespace comics;
+namespace Comics;
 public class StoryDataDownloader : IStoryDataDownloader
 {
 	private readonly IMarvelApi _marvelApi;

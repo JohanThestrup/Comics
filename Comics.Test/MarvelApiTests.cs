@@ -1,4 +1,4 @@
-﻿using comics.Marvel;
+﻿using Comics.Marvel;
 using FluentAssertions;
 using Microsoft.Extensions.Options;
 using NSubstitute;

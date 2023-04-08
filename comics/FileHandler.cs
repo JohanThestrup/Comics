@@ -1,4 +1,4 @@
-﻿namespace comics;
+﻿namespace Comics;
 public class FileHandler : IFileHandler
 {
 	public string root = Path.GetFullPath("../../../../");

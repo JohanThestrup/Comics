@@ -1,11 +1,11 @@
-﻿using comics.Marvel.Interfaces;
-using comics.Marvel.Models;
+﻿using Comics.Marvel.Interfaces;
+using Comics.Marvel.Models;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace comics.Marvel;
+namespace Comics.Marvel;
 public class MarvelApi : IMarvelApi
 {
 	private readonly MarvelConfig _configuration;

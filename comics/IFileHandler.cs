@@ -1,4 +1,4 @@
-﻿namespace comics;
+﻿namespace Comics;
 public interface IFileHandler
 {
 	string CreateDirectory(string storyTitle);

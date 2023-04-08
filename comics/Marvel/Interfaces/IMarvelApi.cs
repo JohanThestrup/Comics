@@ -1,5 +1,5 @@
-﻿using comics.Marvel.Models;
-namespace comics.Marvel.Interfaces;
+﻿using Comics.Marvel.Models;
+namespace Comics.Marvel.Interfaces;
 public interface IMarvelApi
 {
 	Task<StoryDataWrapper> GetStory();
