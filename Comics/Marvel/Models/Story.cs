@@ -44,7 +44,4 @@ public record Story
 	CharacterList Characters,
 	CreatorList Creators,
 	ComicSummary OriginalIssue
-)
-{
-	public string Description { get; set; } = Description;
-}
+);

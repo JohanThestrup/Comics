@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Comics.Tests;
+﻿namespace Comics.Tests;
 public class TestHttpMessageHandler : HttpMessageHandler
 {
 	private readonly HttpResponseMessage response;

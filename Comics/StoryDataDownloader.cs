@@ -30,7 +30,7 @@ public class StoryDataDownloader
 			{
 				string thumbnailURL = $"{Path}/{ _marvelApi.GetImageVariant()}.{Extension}";
 				var image = await GetCharacterThumbnail(thumbnailURL);
-				// Save the image/images
+				// Save the image
 				_fileHandler.SaveImage(image, folderPath + "/" + CharacterName + "." + Extension);
 			}
 		}
