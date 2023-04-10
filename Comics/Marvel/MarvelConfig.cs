@@ -1,5 +1,4 @@
 ﻿namespace Comics.Marvel;
-
 public class MarvelConfig
 {
 	public string PrivateKey { get; set; }

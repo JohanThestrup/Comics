@@ -6,7 +6,7 @@ using NSubstitute;
 namespace Comics.Tests;
 public class StoryDataDownloaderTest
 {
-	private readonly IStoryDataDownloader _storyDataDownloader;
+	private readonly StoryDataDownloader _storyDataDownloader;
 	private readonly IMarvelApi _marvelApi;
 	private readonly IFileHandler _fileHandler;
 	public StoryDataDownloaderTest()
@@ -18,7 +18,7 @@ public class StoryDataDownloaderTest
 	}
 
 	[Theory, AutoData]
-	public async void GetStoryData_Returns_StoryData(StoryDataWrapper storyDataWrapper)
+	public async Task GetStoryData_Returns_StoryData(StoryDataWrapper storyDataWrapper)
 	{
 		// Arrange
 		_marvelApi.GetStory().Returns(storyDataWrapper);
@@ -29,7 +29,7 @@ public class StoryDataDownloaderTest
 	}
 
 	[Theory, AutoData]
-	public async void GetCharacterData_Returns_CharacterData(CharacterDataWrapper characterDataWrapper)
+	public async Task GetCharacterData_Returns_CharacterData(CharacterDataWrapper characterDataWrapper)
 	{
 		// Arrange
 		_marvelApi.GetCharacter("uri").Returns(characterDataWrapper);

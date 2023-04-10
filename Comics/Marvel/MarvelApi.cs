@@ -53,7 +53,7 @@ public class MarvelApi : IMarvelApi
 		return res;
 	}
 
-	public string CreateHash(long ts)
+	private string CreateHash(long ts)
 	{
 		var stringToHash = $"{ts}{_configuration.PrivateKey}{_configuration.PublicKey}";
 		var md5 = MD5.Create();
@@ -67,16 +67,12 @@ public class MarvelApi : IMarvelApi
 		return sb.ToString();
 	}
 
-	public string BuildThumbnailURL(string path, string extension)
-	{
-		return $"{path}/{ _configuration.ImageVariant}.{extension}";
-	}
+	public string GetImageVariant() => _configuration.ImageVariant;
 }
 public interface IMarvelApi
 {
 	Task<StoryDataWrapper> GetStory();
 	Task<CharacterDataWrapper> GetCharacter(string characterURI);
 	Task<HttpResponseMessage> GetImage(string thumbnailURL);
-	string CreateHash(long ts);
-	string BuildThumbnailURL(string path, string extension);
+	string GetImageVariant();
 }

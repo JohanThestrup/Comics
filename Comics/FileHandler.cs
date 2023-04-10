@@ -1,14 +1,20 @@
-﻿namespace Comics;
+﻿using System.IO.Abstractions;
+
+namespace Comics;
 public class FileHandler : IFileHandler
 {
-	public string root = Path.GetFullPath("../../../../");
+	private readonly IFileSystem _fileSystem;
+	public FileHandler(IFileSystem fileSystem)
+	{
+		_fileSystem = fileSystem;
+	}
 
-	public string CreateDirectory(string storyTitle)
+	public string CreateDirectory(string root, string storyTitle)
 	{
 		var dir = Path.Combine(root, storyTitle);
-		if (!Directory.Exists(dir))
+		if (!_fileSystem.Directory.Exists(dir))
 		{
-			Directory.CreateDirectory(dir);
+			_fileSystem.Directory.CreateDirectory(dir);
 		}
 
 		return dir;
@@ -16,32 +22,31 @@ public class FileHandler : IFileHandler
 
 	public void SaveTxtFile(string path, string[] textContent)
 	{
-		if (File.Exists(path))
+		if (_fileSystem.File.Exists(path))
 		{
-			File.Delete(path);
+			_fileSystem.File.Delete(path);
 		}
 
-		using StreamWriter sw = File.CreateText(path);
+		using StreamWriter sw = _fileSystem.File.CreateText(path);
 		foreach (string line in textContent)
 		{
 			sw.WriteLine(line);
 		}
 	}
 
-	public async Task SaveImage(HttpResponseMessage res, string path)
+	public void SaveImage(HttpResponseMessage res, string path)
 	{
-		if (File.Exists(path))
+		if (_fileSystem.File.Exists(path))
 		{
-			File.Delete(path);
+			_fileSystem.File.Delete(path);
 		}
 
-		using var fs = new FileStream(path, FileMode.CreateNew);
-		await res.Content.CopyToAsync(fs);
+		_fileSystem.File.WriteAllBytes(path, res.Content.ReadAsByteArrayAsync().Result);
 	}
 }
 public interface IFileHandler
 {
-	string CreateDirectory(string storyTitle);
+	string CreateDirectory(string root, string storyTitle);
 	void SaveTxtFile(string fileName, string[] textContent);
-	Task SaveImage(HttpResponseMessage res, string path);
-}
+	void SaveImage(HttpResponseMessage res, string path);
+};

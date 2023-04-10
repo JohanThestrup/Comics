@@ -2,7 +2,7 @@
 using Comics.Marvel.Models;
 
 namespace Comics;
-public class StoryDataDownloader : IStoryDataDownloader
+public class StoryDataDownloader
 {
 	private readonly IMarvelApi _marvelApi;
 	private readonly IFileHandler _fileHandler;
@@ -17,7 +17,7 @@ public class StoryDataDownloader : IStoryDataDownloader
 	{
 		// Get the required story data and create directory
 		var (StoryTitle, TextFileContent, Characters) = await GetStoryData();
-		var folderPath = _fileHandler.CreateDirectory(StoryTitle);
+		var folderPath = _fileHandler.CreateDirectory(Environment.CurrentDirectory, StoryTitle);
 
 		// Create and save text file
 		_fileHandler.SaveTxtFile(Path.Combine(folderPath, StoryTitle + ".txt"), TextFileContent);
@@ -28,11 +28,10 @@ public class StoryDataDownloader : IStoryDataDownloader
 			var (CharacterName, Path, Extension) = await GetCharacterData(character.ResourceURI);
 			if (!Path.Contains("image_not_available"))
 			{
-				//var requestURL = $"{thumbnailPath}/{_configuration.ImageVariant}.{thumbnailExtension}";
-				var thumbnailURL = _marvelApi.BuildThumbnailURL(Path, Extension);
+				string thumbnailURL = $"{Path}/{ _marvelApi.GetImageVariant()}.{Extension}";
 				var image = await GetCharacterThumbnail(thumbnailURL);
 				// Save the image/images
-				await _fileHandler.SaveImage(image, folderPath + "/" + CharacterName + "." + Extension);
+				_fileHandler.SaveImage(image, folderPath + "/" + CharacterName + "." + Extension);
 			}
 		}
 	}
@@ -55,17 +54,10 @@ public class StoryDataDownloader : IStoryDataDownloader
 		return new CharacterData(character.Name, character.Thumbnail.Path, character.Thumbnail.Extension);
 	}
 
-	public async Task<HttpResponseMessage> GetCharacterThumbnail(string thumbnailURL)
+	private async Task<HttpResponseMessage> GetCharacterThumbnail(string thumbnailURL)
 	{
 		return await _marvelApi.GetImage(thumbnailURL);
 	}
 }
 public record StoryData(string StoryTitle, string[] TextFileContent, CharacterSummary[] Characters);
 public record CharacterData(string CharacterName, string Path, string Extension);
-public interface IStoryDataDownloader
-{
-	Task Start();
-	Task<StoryData> GetStoryData();
-	Task<CharacterData> GetCharacterData(string resourceURI);
-	Task<HttpResponseMessage> GetCharacterThumbnail(string thumbnailURL);
-}
